@@ -3,22 +3,24 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import TodoItem from "./components/TodoItem"
+import { v4 as uuidv4 } from "uuid"
 
 function App() {
   const [input, setInput] =useState('')
   const [todos, setTodos] = useState([])
   const addTodo = () => {
     if(input.trim() == "") return
-    setTodos([...todos, {text: input, completed: false}])
+    setTodos([...todos, {id: uuidv4(), text: input, completed: false}])
     setInput('')
   }
-  const deleteTodo = (indexToDelete) => {
-    const updated = todos.filter((_, index) => index !== indexToDelete)
+  const deleteTodo = (id) => {
+    const updated = todos.filter(todo => todo.id !== id)
     setTodos(updated)
   }
-  const toggleComplete = (indexToToggle) => {
-    const updated = todos.map((todo, index) =>
-      index == indexToToggle ? {...todo,completed: !todo.completed}
+  const toggleComplete = (id) => {
+    const updated = todos.map((todo) =>
+      todo.id == id 
+    ? {...todo,completed: !todo.completed}
   :todo
   )
   setTodos(updated)
@@ -47,9 +49,8 @@ function App() {
     <ul>
       {todos.map((todo, index) => (
         <TodoItem
-          key={index}
+          key={todo.id}
           todo={todo}
-          index={index}
           toggleComplete={toggleComplete}
           deleteTodo={deleteTodo}
         />
