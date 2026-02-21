@@ -54,6 +54,9 @@ function App() {
     setEditText("")
   }
 
+  //add filter state
+  const [filter, setFilter] = useState("all") // all | active | completed
+
   // Load todos from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("todos")
@@ -77,10 +80,20 @@ function App() {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter task"
       />
+      
+      {/* add filter buttons */}
       <button onClick={addTodo}>Add</button>
+      <button onClick={() => setFilter("all")}>All</button>
+      <button onClick={() => setFilter("active")}>Active</button>
+      <button onClick={() => setFilter("completed")}>Completed</button>
 
       <ul>
-        {todos.map(todo => (
+        {todos.filter(todo => {
+          if (filter === "all") return true
+          if (filter === "active") return !todo.completed
+          if (filter === "completed") return todo.completed
+          return true
+        }).map(todo => (
           <TodoItem
             key={todo.id}
             todo={todo}
