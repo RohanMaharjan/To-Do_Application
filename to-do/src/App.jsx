@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import TodoItem from "./components/TodoItem"
+import AddTodo from './components/Addtodo'
 import { v4 as uuidv4 } from "uuid"
 
 function App() {
@@ -74,15 +75,9 @@ function App() {
     <div className="App">
       <h1>To-Do App</h1>
 
-      <input
-        type='text'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter task"
-      />
-      
+      <AddTodo input={input} setInput={setInput} addTodo={addTodo} />
+
       {/* add filter buttons */}
-      <button onClick={addTodo}>Add</button>
       <button onClick={() => setFilter("all")}>All</button>
       <button onClick={() => setFilter("active")}>Active</button>
       <button onClick={() => setFilter("completed")}>Completed</button>
