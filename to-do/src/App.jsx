@@ -81,6 +81,11 @@ function App() {
       {/* add filter buttons */}
       <Filters filter={filter} setFilter={setFilter} />
 
+      {/* task counter */}
+      <p className="task-counter">
+      {todos.filter(todo => !todo.completed).length} tasks left
+      </p>
+
       <ul>
         {todos.filter(todo => {
           if (filter === "all") return true
