@@ -96,3 +96,23 @@ ul {
   opacity: 0.8;
 }
 
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px 0;
+}
+
+.filters button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: #eee;
+  transition: 0.3s;
+}
+
+.active-filter {
+  background: #667eea;
+  color: white;
+}

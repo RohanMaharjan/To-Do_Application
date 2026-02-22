@@ -1,6 +1,6 @@
 function Filters({ filter, setFilter }) {
   return (
-    <div style={{ margin: "10px 0" }}>
+    <div className="filters">
       <button onClick={() => setFilter("all")}>
         All
       </button>
