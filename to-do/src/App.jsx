@@ -59,6 +59,13 @@ function App() {
   //add filter state
   const [filter, setFilter] = useState("all") // all | active | completed
 
+
+  // clear completed
+  const clearCompleted = () => {
+  const activeTodos = todos.filter(todo => !todo.completed)
+  setTodos(activeTodos)
+  }
+
   // Load todos from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("todos")
@@ -85,7 +92,14 @@ function App() {
       <p className="task-counter">
       {todos.filter(todo => !todo.completed).length} tasks left
       </p>
-
+      
+      {/* clear completed button */}
+      {todos.some(todo => todo.completed) && (
+        <button className="clear-btn" onClick={clearCompleted}>
+        Clear Completed
+         </button>
+      )}
+      
       <ul>
         {todos.filter(todo => {
           if (filter === "all") return true
