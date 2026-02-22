@@ -11,7 +11,7 @@ function TodoItem({
   const isEditing = editId === todo.id
 
   return (
-    <li>
+    <li className="todo-item">
       {isEditing ? (
         <>
           <input
