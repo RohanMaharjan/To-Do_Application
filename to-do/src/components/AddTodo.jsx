@@ -1,6 +1,6 @@
 function AddTodo({ input, setInput, addTodo }) {
   return (
-    <div style={{ marginBottom: "10px" }}>
+    <div className="add-todo">
       <input
         type="text"
         value={input}
